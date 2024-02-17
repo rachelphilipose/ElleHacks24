@@ -14,6 +14,8 @@ from llama_index.llms.llama_utils import (
   completion_to_prompt,
 )
 from langchain.schema import(SystemMessage, HumanMessage, AIMessage)
+from llama_index.readers.web import SimpleWebPageReader
+
 
 # create the streamlit page
 def init_page() -> None:

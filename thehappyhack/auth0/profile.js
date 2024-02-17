@@ -7,13 +7,16 @@ const Profile = () => {
   if (isLoading) {
     return <div>Loading ...</div>;
   }
+  
+  const { name, email, phone_number } = user;
 
   return (
     isAuthenticated && (
       <div>
         <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+        <h2>{name}</h2>
+        <p>{email}</p>
+        <p>{number}</p>
       </div>
     )
   );

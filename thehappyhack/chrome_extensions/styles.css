@@ -1,8 +1,17 @@
 html {
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
 }
 
 body {
-  background-color: pink;
+  background: linear-gradient(#f5f2ee, #b7aced);
+}
+
+button {
+  border-color: #bebebe;
+  background-color: #dcdcdc;
+  font-family: "monospace";
+  color: #363639;
+  margin: 10px;
+  font-size: 18px;
 }

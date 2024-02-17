@@ -8,6 +8,11 @@
     "default_icon": "icon.png"
   },
   "permissions": [
-    "notifications"
-  ]
+    "notifications",
+    "alarms",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
 }

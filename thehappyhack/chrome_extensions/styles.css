@@ -1,8 +1,37 @@
 html {
-  width: 500px;
-  height: 500px;
+  width: 200px;
+  height: 200px;
 }
 
 body {
-  background-color: pink;
+  background: linear-gradient(#f5f2ee, #b7aced);
+  color: #363639;
+  text-align: center;
+  font-family: "monospace";
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+button {
+  border-color: #bebebe;
+  background-color: #dcdcdc;
+  margin: 5px;
+  align-items: center;
+  font-size: 24px;
+  color: #363639;
+  font-family: "monospace";
+}
+
+img {
+  margin: 10px;
 }

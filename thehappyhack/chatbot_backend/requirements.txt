@@ -1,0 +1,7 @@
+huggingface_hub
+langchain
+wget
+llama-index
+cohere
+llama-cpp-python
+streamlit

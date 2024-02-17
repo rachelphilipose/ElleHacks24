@@ -1,0 +1,19 @@
+@import "./vars.scss";
+
+body {
+
+    font-family: monospace;
+    background: linear-gradient(0deg, $primary 5%, $accent);
+    color: $foreground;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 30px;
+    height: 100vh;
+
+}
+
+.h1 {
+    text-align: center;
+    color: rgb(235, 27, 27);
+}

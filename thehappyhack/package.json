@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vonage/server-sdk": "^3.12.2",
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.2",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
     "sass": "^1.71.0",
+    "twilio": "^4.22.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

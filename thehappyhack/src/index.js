@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import * as serviceWorker from './serviceWorker';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -38,8 +39,9 @@ root.render(
         redirect_uri: 'http://localhost:4001'
       }}
     >
-      {/*<App />*/}
-      <RouterProvider router={router} />
+      <App />
+      {/*      <RouterProvider router={router} />*/}
+
     </Auth0Provider>,
   );
 
@@ -47,3 +49,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+serviceWorker.unregister();

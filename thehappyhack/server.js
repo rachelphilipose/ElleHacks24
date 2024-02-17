@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const noteRouter = require('./routes/noteRouter')
+const dbo = require('./db/conn')
 
 const app = express()
 app.use(express.json())
@@ -18,8 +19,11 @@ app.get('/', (req, res) =>{
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
+    dbo.connectToServer(function(err) {
+        if (err) console.err(err);
+    });
     console.log('Server is running on port', PORT)
-})
+});
 
 //Connect to MongoDB
 const URI = process.env.MONGODB_URL

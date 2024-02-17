@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.scss';
 import logo from './logo.svg';
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
 
 const App = () => {
   return (
@@ -9,6 +11,8 @@ const App = () => {
     <div className='mt-3'>
       <div className='container'>
         <h1>theHappyHack ;)</h1>
+        <LoginButton/>
+        <LogoutButton/>
       </div>
     </div>
 
@@ -25,8 +29,6 @@ const App = () => {
       </div>
       </div>
 
-
-      
       <div className= 'col-sm-4'>
         <div className="card" >
         <div className="card-body">

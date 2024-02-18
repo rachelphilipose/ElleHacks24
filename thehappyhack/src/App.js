@@ -51,7 +51,7 @@ const App = () => {
       </div>
 
       </div>
-      <Notes/>
+      <CreateNote/>
       </div>
 
 

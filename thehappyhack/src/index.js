@@ -4,7 +4,7 @@ import App from './App';
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import * as serviceWorker from './serviceWorker';
-
+import { BrowserRouter } from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 
@@ -39,9 +39,10 @@ root.render(
         redirect_uri: 'http://localhost:4001'
       }}
     >
-      <App />
+      <BrowserRouter>
+        <App />
       {/*      <RouterProvider router={router} />*/}
-
+      </BrowserRouter>
     </Auth0Provider>,
   );
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 
 export default function EditNote({match}) {
     const [note, setNote] = useState({
@@ -9,71 +9,75 @@ export default function EditNote({match}) {
         date: '',
         id: ''
     })
-    const history = useNavigate()
+    const params = useParams();
 
-    useEffect(() =>{
-        const getNote = async () =>{
-            const token = localStorage.getItem('tokenStore')
-            if(match.params.id){
-                const res = await axios.get(`/api/notes/${match.params.id}`, {
-                })
-                setNote({
-                    title: res.data.title,
-                    content: res.data.content,
-                    date: new Date(res.data.date).toLocaleDateString(),
-                    id: res.data._id
-                })
-            }
-        }
-        getNote()
-    },[match.params.id])
+    const navigate = useNavigate();
+    useEffect(() => {
+     async function fetchData() {
+       const id = params.id.toString();
+       const response = await fetch(`http://localhost:4000/record/${params.id.toString()}`);
+        if (!response.ok) {
+         const message = `An error has occurred: ${response.statusText}`;
+         window.alert(message);
+         return;
+       }
+        const record = await response.json();
+       if (!record) {
+         window.alert(`Record with id ${id} not found`);
+         //navigate("/");
+         return;
+       }
+        setNote(record);
+     }
+      fetchData();
+      return;
+    }, [params.id, navigate]);
+    // These methods will update the state properties.
+   function updateForm(value) {
+     return setNote((prev) => {
+       return { ...prev, ...value };
+     });
+   }
+    async function onSubmit(e) {
+     e.preventDefault();
+     const editedNote = {
+       title: note.title,
+       content: note.content,
+       date: note.date,
+     };
+      // This will send a post request to update the data in the database.
+     await fetch(`http://localhost:4000/update/${params.id}`, {
+       method: "POST",
+       body: JSON.stringify(editedNote),
+       headers: {
+         'Content-Type': 'application/json'
+       },
+     });
+      navigate("/");
+   }
 
-    const onChangeInput = e => {
-        const {name, value} = e.target;
-        setNote({...note, [name]:value})
-    }
-
-    const editNote = async e => {
-        e.preventDefault()
-        try {
-            const token = localStorage.getItem('tokenStore')
-            if(token){
-                const {title, content, date, id} = note;
-                const newNote = {
-                    title, content, date
-                }
-
-                await axios.put(`/api/notes/${id}`, newNote, {
-                    headers: {Authorization: token}
-                })
-                
-                return history.push('/')
-            }
-        } catch (err) {
-            window.location.href = "/";
-        }
-    }
+ 
 
     return (
         <div className="create-note">
             <h2>Edit Note</h2>
-            <form onSubmit={editNote} autoComplete="off">
+            <form onSubmit={onSubmit} autoComplete="off">
                 <div className="row">
                     <label htmlFor="title">Title</label>
                     <input type="text" value={note.title} id="title"
-                    name="title" required onChange={onChangeInput} />
+                    name="title" required onChange={(e) => updateForm({ title: e.target.value })} />
                 </div>
 
                 <div className="row">
                     <label htmlFor="content">Content</label>
                     <textarea type="text" value={note.content} id="content"
-                    name="content" required rows="10" onChange={onChangeInput} />
+                    name="content" required rows="10" onChange={(e) => updateForm({ content: e.target.value })} />
                 </div>
 
                 <label htmlFor="date">Date: {note.date} </label>
                 <div className="row">
                     <input type="date" id="date"
-                    name="date" onChange={onChangeInput} />
+                    name="date" onChange={(e) => updateForm({ date: e.target.value })} />
                 </div>
 
                 <button type="submit">Save</button>

@@ -5,16 +5,22 @@ import CreateNote from './Notes/CreateNote'
 import EditNote from './Notes/EditNote'
 import {BrowserRouter as Router, Route, BrowserRouter, Routes} from 'react-router-dom'
 
+ // We import all the components we need in our app
+ import Navbar from './Notes/Nav'
+ import RecordList from './Notes/NoteWrapper'
+ import Edit from './Notes/EditNote'
+ import Create from './Notes/CreateNote'
+
+
 export default function Notes({setIsLogin}) {
     return (
-        <BrowserRouter>
-        <Header setIsLogin={setIsLogin} />
+        <div>
+        <Navbar />
         <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/create" element={<CreateNote/>} />
-            <Route path="/edit/:id" element={<EditNote/>} />
-                
+          <Route exact path="/" element={<RecordList />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/create" element={<Create />} />
         </Routes>
-        </BrowserRouter>
+      </div>
     )
 }
